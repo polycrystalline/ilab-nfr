@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="edit-Type" edit="text/html; charset=utf-8">
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<link href="//fonts.googleapis.com/css?family=Lato:400|Inconsolata" rel="stylesheet" type="text/css">
+<link href="https://rawgit.com/Semantic-Org/Semantic-UI/next/dist/semantic.css" rel="stylesheet" type="text/css">
+
+
+<style type="text/css" media="screen">
+body {
+  padding: 5em;
+}
+
+.ui.text.container {
+  font-size: 1.14285714rem;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="ui centered grid">
+  <div class="column">
+    <h1 class="ui header">New Feature Requests</h1>
+
+    <form id="requestForm" class="ui form">
+      <br>
+      <button id="feature-link" class="ui primary button">Submit feature request</button>
+      <span style="color:gray">
+        valuable enhancements to iLab
+      </span>
+    </form>
+
+  </div> <!-- column -->
+</div>
+
+<script>
+
+// Requires jQuery!
+
+jQuery.ajax({
+  url: "https://ilabdev.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/-x5xs6o/b/22/a44af77267a987a660377e5c46e0fb64/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en&collectorId=ed891537",
+  type: "get",
+  cache: true,
+  dataType: "script"
+});
+
+
+$(function() {
+
+    window.ATL_JQ_PAGE_PROPS = $.extend(window.ATL_JQ_PAGE_PROPS, {
+    // ==== features request collector =====
+    'ed891537' : {
+        triggerFunction: function(showCollectorDialog) {
+          $("#feature-link").click(function(e) {
+            e.preventDefault();
+            showCollectorDialog();
+          });
+        }
+
+        , fieldValues: {
+            summary : '[Replace with feature request title]',
+            description : '*Description of Request:* \n\n\n*Requestor Name:*\n*Requestor Institution:* \n*Requestor Role:* \n\n*Customer value:* <What root problem will this help them solve? How will this help improve their operations or workflows/processes?> \n\n*Customer priority:* *low*, medium, high \n*Customer impact:* many, some, *few* \n\n*Your Team:* \n\n*Response required by:* \n\n*Additional comments:* ',
+            priority : '3'
+        }
+      }
+  });
+
+
+});
+
+
+
+
+
+</script>
+
+</body>
+
+</html>
